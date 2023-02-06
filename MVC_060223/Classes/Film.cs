@@ -11,5 +11,6 @@ namespace MVC_060223.Classes
         public int Yil { get; set; }
         [Precision(3,1)]
         public decimal Puan { get; set; }
+        public List<Tur> Turler { get; set; } = new();
     }
 }

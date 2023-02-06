@@ -16,10 +16,23 @@
         <input asp-for="Yil" class="form-control" />
         <span asp-validation-for="Yil" class="text-danger"></span>
     </div>
-    <div class="mb-2">
+    <div class="mb-3">
         <label asp-for="Puan"></label>
         <input asp-for="Puan" class="form-control" type="text"/>
         <span asp-validation-for="Puan" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <div class="row">
+        @foreach(Tur tur in ViewBag.Turler)
+        {
+            <div class="col-6 col-sm-4 col-md-3 col-lg-3">
+                <label class="d-flex align-items-center">
+                <input type="checkbox" name="turler" class="me-2" value="@tur.Id" />
+                @tur.Ad
+                </label>
+            </div>
+        }
+        </div>
     </div>
     <button class="btn btn-primary">EKLE</button>
 </form>

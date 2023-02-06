@@ -16,6 +16,7 @@ namespace MVC_060223.Controllers
         }
         public IActionResult Yeni()
         {
+            ViewBag.Turler=_db.Turler.ToList();
             return View();
         }
         
@@ -28,6 +29,7 @@ namespace MVC_060223.Controllers
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.Turler = _db.Turler.ToList();
             return View();
         }
         public IActionResult Duzenle(int id)
