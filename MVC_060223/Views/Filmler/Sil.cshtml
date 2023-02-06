@@ -8,7 +8,8 @@
 <form asp-controller="Filmler" asp-action="SilOnay" method="post">
     <input asp-for="Id" type="hidden" />
     <div class="mb-2">
-        <label asp-for="Ad">Silmek İstediğin Id'ye ait kişinin Adı: @Model.Ad  @Model.Yil @Model.Puan eminsen Sil butonuna bas </label>       
+        <label asp-for="Ad"> (@Model.Ad)  (@Model.Yil) eminsen Sil Butonuna bas </label>       
     </div>
     <button class="btn btn-primary">Sil</button>
+    <a  asp-controller="Filmler" asp-action="Index" type="button" class="btn btn-warning">VAZGEC</a>
 </form>
