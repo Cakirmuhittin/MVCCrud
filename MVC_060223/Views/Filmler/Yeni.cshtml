@@ -1,0 +1,25 @@
+﻿@using MVC_060223.Classes;
+@model Film
+
+@{
+    ViewData["Title"] = "Yeni Film";
+}
+<h1>Yeni Film</h1>
+<form asp-controller="Filmler" asp-action="Yeni" method="post">
+    <div class="mb-2">
+        <label asp-for="Ad"></label>
+        <input asp-for="Ad" class="form-control" />
+        <span asp-validation-for="Ad" class="text-danger"></span>
+    </div>
+    <div class="mb-2">
+        <label asp-for="Yil"></label>
+        <input asp-for="Yil" class="form-control" />
+        <span asp-validation-for="Yil" class="text-danger"></span>
+    </div>
+    <div class="mb-2">
+        <label asp-for="Puan"></label>
+        <input asp-for="Puan" class="form-control" type="text"/>
+        <span asp-validation-for="Puan" class="text-danger"></span>
+    </div>
+    <button class="btn btn-primary">EKLE</button>
+</form>
