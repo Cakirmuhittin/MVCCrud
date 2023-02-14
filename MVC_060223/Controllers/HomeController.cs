@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using MVC_060223.Classes;
 using MVC_060223.Models;
 using System.Diagnostics;
 
@@ -7,15 +10,35 @@ namespace MVC_060223.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly UygulamaDbContext _db;
+        public HomeController(ILogger<HomeController> logger, UygulamaDbContext db)
         {
             _logger = logger;
+            _db = db;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int? turId)
         {
-            return View();
+            IQueryable<Film> filmler = _db.Filmler.Include(x => x.Turler);
+            if (turId != null)
+            {
+                //öyle filmleri getir ki:
+                //o filmin türlerinin en az birisinin turId'ye eşit olsun
+                filmler = filmler.Where(x => x.Turler.Any(t => t.Id == turId));
+            }
+            ViewBag.Turler = _db.Turler.Select(x => new SelectListItem()
+            {
+                Text = x.Ad,
+                Value = x.Id.ToString()
+
+            }).ToList();
+            var vm = new HomeViewModel()
+            {
+                Filmler=filmler.ToList(),
+                TurId=turId
+            };
+
+            return View(vm);
         }
 
         public IActionResult Privacy()

@@ -13,6 +13,7 @@
             <th>Ad</th>
             <th>Yil</th>
             <th>Puan</th>
+            <th>Türler</th>
             <th>İşlemler</th>
         </tr>
     </thead>
@@ -24,6 +25,7 @@
                     <td>@item.Ad</td>
                     <td>@item.Yil</td>
                     <td>@item.Puan</td>
+                    <td>@string.Join(", ",item.Turler.Select(x=>x.Ad))</td>
                     <td>
                         <a asp-action="Duzenle" asp-route-id="@item.Id">Düzenle</a>
                         <a asp-action="Sil" asp-route-id="@item.Id">Sil</a>
